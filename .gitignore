@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+.env.*
+
+# Docker
+**/Dockerfile
+**/.dockerignore
+
+# Kubernetes
+*.yaml
+!pv.yaml
+!pvc.yaml
+!vllm-deployment.yaml
+!vllm-service.yaml
+!qdrant-deployment.yaml
+!qdrant-service.yaml
+!clip-deployment.yaml
+!clip-service.yaml
+!embedding-deployment.yaml
+!embedding-service.yaml
+
+# Misc
+*.log 

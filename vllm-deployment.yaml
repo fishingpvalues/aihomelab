@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm
+  template:
+    metadata:
+      labels:
+        app: vllm
+    spec:
+      containers:
+      - name: vllm
+        image: vllm/vllm-openai:latest
+        command: ["vllm", "serve", "/models/gpt2", "--cpu-offload-gb", "32", "--api-key", "my-secret-key"]
+        volumeMounts:
+        - mountPath: /models
+          name: models-volume
+        resources:
+          requests:
+            cpu: 4
+            memory: 48Gi
+          limits:
+            nvidia.com/gpu: 1
+            memory: 48Gi
+      volumes:
+      - name: models-volume
+        persistentVolumeClaim:
+          claimName: models-pvc 

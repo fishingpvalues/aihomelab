@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: embedding-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: embedding
+  template:
+    metadata:
+      labels:
+        app: embedding
+    spec:
+      containers:
+      - name: embedding
+        image: embedding-service:latest
+        volumeMounts:
+        - mountPath: /models
+          name: models-volume
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+      volumes:
+      - name: models-volume
+        persistentVolumeClaim:
+          claimName: models-pvc 
