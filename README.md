@@ -19,7 +19,7 @@ This project enables you to run a full AI stack (text, vision, embedding models)
 ## 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/fishingpvalues/aihomelab.git
 cd aihomelab
 ```
 
